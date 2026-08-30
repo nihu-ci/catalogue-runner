@@ -1,0 +1,22 @@
+name: Catalogue CI workflow
+on:
+  workflow_dispatch:
+    inputs: 
+      project:
+        type: string
+        required: true
+        description: "Enter project name"
+      component:
+        type: string
+        required: true
+        description: "Enter component name"
+      description:
+        type: string
+        required: false
+jobs:
+  catalogue:
+    if: ${{ github.ref != 'refs/heads/main' }}
+    uses: nihu-ci/usable-workflow/.github/workflows/shared-nodejs.yaml@main
+    with:
+      project: ${{ inputs.project }}
+      component: ${{ inputs.component }}
