@@ -1,5 +1,8 @@
 name: Catalogue CI workflow
 on:
+  push:
+   branches:
+   - main
   workflow_dispatch:
     inputs: 
       project:
@@ -21,5 +24,5 @@ jobs:
       contents: read
       statuses: write
     with:
-      project: ${{ inputs.project }}
-      component: ${{ inputs.component }}
+      project: ${{ inputs.project || 'roboshop' }}
+      component: ${{ inputs.component || 'catalogue' }}
