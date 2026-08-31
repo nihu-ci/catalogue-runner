@@ -11,7 +11,7 @@ on:
         type: choice
         options:
          - qa
-         - uat
+         - uat 
          - sit
         default: dev
 jobs:
