@@ -1,0 +1,26 @@
+name: depoy to non-pod
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        required: true
+        description: "Enter commit sha"
+        type: string
+      environment:
+        required: true
+        type: choice
+        options:
+         - qa
+         - uat 
+         - sit
+        default: dev
+jobs:
+  non-prod:
+    uses: nihu-ci/usable-workflow/.github/workflows/non-prod.yaml@main
+    permissions:  #controls what gittoken can do
+      contents: read
+      statuses: write
+    with:
+      version: ${{ inputs.version }}
+      environment: ${{ inputs.environment }}
+    secrets: inherit
