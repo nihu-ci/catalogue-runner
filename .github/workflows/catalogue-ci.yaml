@@ -17,7 +17,7 @@ on:
         type: string
         required: false 
 jobs:
-  catalogue:
+  feature-pipeline:
     if: ${{ github.ref != 'refs/heads/main' }}
     uses: nihu-ci/usable-workflow/.github/workflows/ci-nodejs.yaml@main
     permissions:  #controls what gittoken can do
@@ -28,8 +28,7 @@ jobs:
       component: ${{ inputs.component || 'catalogue' }}
     secrets: inherit
 
-jobs:
-  catalogue:
+  dev-pipeline:
     if: ${{ github.ref == 'refs/heads/main' }}
     uses: nihu-ci/usable-workflow/.github/workflows/dev-nodejs.yaml@main
     permissions:  #controls what gittoken can do
