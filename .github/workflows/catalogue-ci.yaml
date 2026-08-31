@@ -34,7 +34,7 @@ jobs:
     permissions:  #controls what gittoken can do
       contents: read
       statuses: write
-    with:
+    with: 
       project: ${{ inputs.project || 'roboshop' }}
       component: ${{ inputs.component || 'catalogue' }}
     secrets: inherit
