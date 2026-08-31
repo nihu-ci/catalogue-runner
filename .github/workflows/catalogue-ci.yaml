@@ -17,6 +17,9 @@ jobs:
   catalogue:
     if: ${{ github.ref != 'refs/heads/main' }}
     uses: nihu-ci/usable-workflow/.github/workflows/shared-nodejs.yaml@main
+    permissions:
+    contents: read
+    statuses: write
     with:
       project: ${{ inputs.project }}
       component: ${{ inputs.component }}
