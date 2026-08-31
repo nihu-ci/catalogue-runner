@@ -19,7 +19,19 @@ on:
 jobs:
   catalogue:
     if: ${{ github.ref != 'refs/heads/main' }}
-    uses: nihu-ci/usable-workflow/.github/workflows/shared-nodejs.yaml@main
+    uses: nihu-ci/usable-workflow/.github/workflows/ci-nodejs.yaml@main
+    permissions:  #controls what gittoken can do
+      contents: read
+      statuses: write
+    with:
+      project: ${{ inputs.project || 'roboshop' }}
+      component: ${{ inputs.component || 'catalogue' }}
+    secrets: inherit
+
+jobs:
+  catalogue:
+    if: ${{ github.ref == 'refs/heads/main' }}
+    uses: nihu-ci/usable-workflow/.github/workflows/dev-nodejs.yaml@main
     permissions:  #controls what gittoken can do
       contents: read
       statuses: write
