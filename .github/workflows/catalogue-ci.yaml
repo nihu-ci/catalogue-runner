@@ -2,7 +2,7 @@ name: Catalogue CI workflow
 on:
   push:
    branches:
-   - main
+   - feature-branch
   workflow_dispatch:
     inputs: 
       project:
