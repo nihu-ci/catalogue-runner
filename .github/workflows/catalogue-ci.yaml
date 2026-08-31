@@ -1,5 +1,8 @@
 name: Catalogue CI workflow
 on:
+  push:
+   branches:
+   - feature-branch
   workflow_dispatch:
     inputs: 
       project:
@@ -12,11 +15,26 @@ on:
         description: "Enter component name"
       description:
         type: string
-        required: false
+        required: false 
 jobs:
-  catalogue:
+  feature-pipeline:
     if: ${{ github.ref != 'refs/heads/main' }}
-    uses: nihu-ci/usable-workflow/.github/workflows/shared-nodejs.yaml@main
+    uses: nihu-ci/usable-workflow/.github/workflows/ci-nodejs.yaml@main
+    permissions:  #controls what gittoken can do
+      contents: read
+      statuses: write
     with:
-      project: ${{ inputs.project }}
-      component: ${{ inputs.component }}
+      project: ${{ inputs.project || 'roboshop' }}
+      component: ${{ inputs.component || 'catalogue' }}
+    secrets: inherit
+
+  dev-pipeline:
+    if: ${{ github.ref == 'refs/heads/main' }}
+    uses: nihu-ci/usable-workflow/.github/workflows/dev-nodejs.yaml@main
+    permissions:  #controls what gittoken can do
+      contents: read
+      statuses: write
+    with:
+      project: ${{ inputs.project || 'roboshop' }}
+      component: ${{ inputs.component || 'catalogue' }}
+    secrets: inherit
