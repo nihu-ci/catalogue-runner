@@ -12,7 +12,7 @@ concurrency:
 jobs:
   prod:
     if: ${{ github.ref == 'refs/heads/main' }}
-    uses: nihu-ci/usable-workflow/.github/workflows/non-prod.yaml@main
+    uses: nihu-ci/usable-workflow/.github/workflows/prod-nodejs.yaml@main
     permissions:  #controls what gittoken can do
       contents: read
       statuses: write
