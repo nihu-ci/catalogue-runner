@@ -1,0 +1,21 @@
+name: depoy to pod
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        required: true
+        description: "Enter commit sha"
+        type: string
+concurrency:
+  group: roboshop-catalogue-prod
+  cancel-in-progress: false
+jobs:
+  prod:
+    if: ${{ github.ref == 'refs/heads/main' }}
+    uses: nihu-ci/usable-workflow/.github/workflows/non-prod.yaml@main
+    permissions:  #controls what gittoken can do
+      contents: read
+      statuses: write
+    with:
+      version: ${{ inputs.version }}
+    secrets: inherit
