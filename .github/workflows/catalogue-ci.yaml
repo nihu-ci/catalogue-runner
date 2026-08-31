@@ -3,6 +3,7 @@ on:
   push:
    branches:
    - feature-branch
+   - main
   workflow_dispatch:
     inputs: 
       project:
