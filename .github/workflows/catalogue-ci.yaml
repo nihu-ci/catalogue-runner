@@ -15,7 +15,7 @@ on:
         description: "Enter component name"
       description:
         type: string
-        required: false
+        required: false 
 jobs:
   catalogue:
     if: ${{ github.ref != 'refs/heads/main' }}
