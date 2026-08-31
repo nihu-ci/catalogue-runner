@@ -16,11 +16,11 @@ on:
         default: dev
 jobs:
   non-prod:
-  uses: nihu-ci/usable-workflow/.github/workflows/non-prod.yaml@main
-  permissions:  #controls what gittoken can do
+    uses: nihu-ci/usable-workflow/.github/workflows/non-prod.yaml@main
+    permissions:  #controls what gittoken can do
       contents: read
       statuses: write
-  with:
-    version: ${{ inputs.version }}
-    environment: ${{ inputs.environment }}
-  secrets: inherit
+    with:
+      version: ${{ inputs.version }}
+      environment: ${{ inputs.environment }}
+    secrets: inherit
